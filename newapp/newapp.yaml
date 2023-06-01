@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: new-app
 spec:
-  replicas: 1
+  replicas: 
   selector:
     matchLabels:
       app: new-app
@@ -16,5 +16,8 @@ spec:
         - name: new-app
           image: httpd:2.4
           ports:
-            - containerPort: 80          
-
+            - containerPort: 80
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
