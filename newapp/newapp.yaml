@@ -17,7 +17,3 @@ spec:
           image: httpd:2.4
           ports:
             - containerPort: 80
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
