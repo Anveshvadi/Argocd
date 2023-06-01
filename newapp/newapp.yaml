@@ -16,3 +16,9 @@ spec:
         - name: new-app
           image: httpd:2.4
           ports:
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - PruneLast=true
