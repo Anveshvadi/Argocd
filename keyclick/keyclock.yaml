@@ -1,25 +1,15 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: app
+  name: sample-app
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: app
-  template:
-    metadata:
-      labels:
-        app: app
-    spec:
-      containers:
-        - name: app
-          image: httpd:2.4
-          ports:
-            - containerPort: 80          
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-        syncOptions:
-          - PruneLast=true
+  project: default
+  source:
+    repoURL: 
+    path: keyclick
+  destination:
+    server: 
+    namespace: 
+  syncPolicy:
+    automated:
+      selfHeal: true
