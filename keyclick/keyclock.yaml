@@ -5,11 +5,11 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 
+    repoURL: https://github.com/Anveshvadi/Argocd
     path: keyclick
   destination:
-    server: 
-    namespace: 
+    server: https://kubernetes.default.svc
+    namespace: argocd
   syncPolicy:
     automated:
       selfHeal: true
