@@ -14,3 +14,9 @@ spec:
     automated:
       prune: true
       selfHeal: false
+  spec:
+    template:
+      spec:
+        containers:
+          - name: keycloak
+            image: jboss/keycloak:16.1.0
