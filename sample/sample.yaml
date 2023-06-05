@@ -3,10 +3,10 @@ kind: Deployment
 metadata:
   name: sample-app
 spec:
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: false
+#  syncPolicy:
+#    automated:
+#      prune: true
+#      selfHeal: false
   replicas: 1
   selector:
     matchLabels:
