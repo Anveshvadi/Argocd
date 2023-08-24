@@ -1,0 +1,50 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: bootstrap-argocd
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: git@github.com:Anveshvadi/Argocd.git
+        revision: master
+        directories:
+          - path: environments/*/*/*
+  template:
+    metadata:
+      name: '{{ path[1] }}-{{ path.basenameNormalized }}'
+    spec:
+      project: 'argocd'
+      source:
+        repoURL: git@github.com:Anveshvadi/Argocd.git
+        targetRevision: master
+        path: '{{ path }}'
+      destination:
+        # WARN(elowry): chicken/egg problem here. Upon first deployment, this may be
+        # a cluster called 'in-cluster'. Since we run ArgoCD on our infrastructure, and
+        # ArgoCD manages ArgoCD, this may need an unfurling in a DR scenario
+        name: 'eks-engr'
+        namespace: 'argocd'
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: project-configurations
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: argocd
+  source:
+    path: components/project-configuration
+    repoURL: git@github.com:Anveshvadi/Argocd.git
+    targetRevision: master
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true          
