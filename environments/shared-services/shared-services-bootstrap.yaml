@@ -8,8 +8,8 @@ spec:
     - git:
         repoURL: https://github.com/Anveshvadi/Argocd.git
         revision: main
-        directories:
-          - path: environments/shared-services/us-east-1/eks-engr/elastic-agent/elastic-agent
+        files:
+          - path: environments/shared-services/us-east-1/eks-engr/**/elastic-agent.yaml
   template:
     metadata:
       name: '{{ path[1] }}-{{ path[3] }}-{{ path[4] }}-{{ path.basenameNormalized }}'
