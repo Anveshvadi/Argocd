@@ -10,5 +10,5 @@ spec:
   project: cluster-services-application-set
   source:
     path: .
-    repoURL: git@github.com:Anveshvadi/Argocd.git
-    targetRevision: master
+    repoURL: https://github.com/Anveshvadi/Argocd.git
+    targetRevision: main
