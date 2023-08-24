@@ -36,7 +36,7 @@ spec:
     server: https://kubernetes.default.svc
   project: cluster-services-application-set
   source:
-    path: environments/shared-services/us-east-1/eks-engr/**/elastic-agent.yaml
+    path: components/project-configuration
     repoURL: https://github.com/Anveshvadi/Argocd.git
     targetRevision: main
 
