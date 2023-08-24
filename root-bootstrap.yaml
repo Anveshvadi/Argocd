@@ -14,7 +14,7 @@ spec:
     metadata:
       name: '{{ path[1] }}-{{ path.basenameNormalized }}'
     spec:
-      project: 'argocd'
+      project: 'cluster-services-application-set'
       source:
         repoURL: git@github.com:Anveshvadi/Argocd.git
         targetRevision: master
