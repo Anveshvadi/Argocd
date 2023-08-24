@@ -14,7 +14,7 @@ spec:
     metadata:
       name: '{{ path[1] }}-{{ path.basenameNormalized }}'
     spec:
-      project: 'cluster-services-application-set'
+      project: 'argocd'
       source:
         repoURL: https://github.com/Anveshvadi/Argocd.git
         targetRevision: main
@@ -39,7 +39,7 @@ spec:
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
-  project: cluster-services-application-set
+  project: argocd
   source:
     path: components/project-configuration
     repoURL: https://github.com/Anveshvadi/Argocd.git
