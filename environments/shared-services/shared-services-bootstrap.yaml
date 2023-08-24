@@ -6,8 +6,8 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: git@github.com:Anveshvadi/Argocd.git
-        revision: master
+        repoURL: https://github.com/Anveshvadi/Argocd.git
+        revision: main
         directories:
           - path: environments/shared-services/us-east-1/eks-engr/elastic-agent/elastic-agent
   template:
@@ -16,8 +16,8 @@ spec:
     spec:
       project: cluster-services-application-set
       source:
-        repoURL: git@github.com:Anveshvadi/Argocd.git
-        targetRevision: master
+        repoURL: https://github.com/Anveshvadi/Argocd.git
+        targetRevision: main
         path: '{{ path }}'
       destination:
         name: '{{ path[3] }}'
