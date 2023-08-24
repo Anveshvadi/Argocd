@@ -1,3 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: elastic-agent
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: cluster-services-application-set
+  source:
+    path: '{{ path }}'
+    repoURL: https://github.com/Anveshvadi/Argocd.git
+    targetRevision: main
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
