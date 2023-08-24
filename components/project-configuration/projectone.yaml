@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: cluster-services-application-set
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  description: Cluster wide services for helping engineering tools level up
+  destinations:
+    # shared-services
+  - namespace: argocd
+    server: https://kubernetes.default.svc
+  sourceRepos:
+  - git@github.com:Anveshvadi/Argocd.git
