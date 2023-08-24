@@ -20,4 +20,4 @@ spec:
   - group: argoproj.io
     kind: Application 
   sourceRepos:
-  - git@github.com:Anveshvadi/Argocd.git
+  - https://github.com/Anveshvadi/Argocd.git
