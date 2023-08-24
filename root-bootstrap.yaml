@@ -6,8 +6,8 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: git@github.com:Anveshvadi/Argocd.git
-        revision: master
+        repoURL: https://github.com/Anveshvadi/Argocd.git
+        revision: main
         directories:
           - path: environments/*/*/*
   template:
@@ -16,8 +16,8 @@ spec:
     spec:
       project: 'cluster-services-application-set'
       source:
-        repoURL: git@github.com:Anveshvadi/Argocd.git
-        targetRevision: master
+        repoURL: https://github.com/Anveshvadi/Argocd.git
+        targetRevision: main
         path: '{{ path }}'
       destination:
         # WARN(elowry): chicken/egg problem here. Upon first deployment, this may be
@@ -42,8 +42,8 @@ spec:
   project: cluster-services-application-set
   source:
     path: components/project-configuration
-    repoURL: git@github.com:Anveshvadi/Argocd.git
-    targetRevision: master
+    repoURL: https://github.com/Anveshvadi/Argocd.git
+    targetRevision: main
   syncPolicy:
     automated:
       prune: true
