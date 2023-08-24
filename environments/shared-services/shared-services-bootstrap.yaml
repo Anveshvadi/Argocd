@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: bootstrap-shared-services-eks-engr
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: git@github.com:Anveshvadi/Argocd.git
+        revision: master
+        directories:
+          - path: environments/shared-services/us-east-1/eks-engr/elastic-agent/elastic-agent
+  template:
+    metadata:
+      name: '{{ path[1] }}-{{ path[3] }}-{{ path[4] }}-{{ path.basenameNormalized }}'
+    spec:
+      project: cluster-services-application-set
+      source:
+        repoURL: git@github.com:Anveshvadi/Argocd.git
+        targetRevision: master
+        path: '{{ path }}'
+      destination:
+        name: '{{ path[3] }}'
+        namespace: '{{ path[4] }}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - PruneLast=true
+
