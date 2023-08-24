@@ -23,7 +23,7 @@ spec:
         # WARN(elowry): chicken/egg problem here. Upon first deployment, this may be
         # a cluster called 'in-cluster'. Since we run ArgoCD on our infrastructure, and
         # ArgoCD manages ArgoCD, this may need an unfurling in a DR scenario
-        name: 'eks-engr'
+        name: 'in-cluster'
         namespace: 'argocd'
       syncPolicy:
         automated:
