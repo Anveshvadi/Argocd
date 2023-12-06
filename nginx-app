@@ -1,12 +1,19 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: nginx-app
+  name: nginx-deployment
 spec:
-  destination:
-    server: 'https://kubernetes.default.svc'
-    namespace: default
-  source:
-    path: .
-    repoURL: 'https://github.com/your-username/your-repo.git'
-  project: default
+  replicas: 2  # Increase the number of replicas to 2 for demonstration
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
