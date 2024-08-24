@@ -4,7 +4,7 @@ metadata:
   name: istiobase
   namespace: argocd
 spec:
-  project: base-project
+  project: default
   source:
     chart: base  # The name of the chart in the Helm repository
     repoURL: https://istio-release.storage.googleapis.com/charts
