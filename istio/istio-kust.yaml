@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istiobase
+  namespace: argocd
+spec:
+  project: base-project
+  source:
+    chart: base  # The name of the chart in the Helm repository
+    repoURL: https://istio-release.storage.googleapis.com/charts
+    targetRevision: 1.21.3  # Version of Istio to install
+    helm:
+      releaseName: istiobase
+      valueFiles:
+        - istio-base.yaml
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: istio-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
