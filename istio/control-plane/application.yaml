@@ -4,7 +4,7 @@ metadata:
   name: istiod
   namespace: argocd
 spec:
-  project: cluster-services-application-set
+  project: default
   source:
     chart: istiod
     repoURL: https://istio-release.storage.googleapis.com/charts
