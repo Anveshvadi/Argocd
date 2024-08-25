@@ -8,11 +8,47 @@ spec:
   source:
     chart: istiod
     repoURL: https://istio-release.storage.googleapis.com/charts
-    targetRevision: 1.21.3  # Version of Istio  to install
+    targetRevision: 1.21.3  # Version of Istio to install
     helm:
       releaseName: istiod
-      valueFiles:
-        - values-istiod.yaml
+      values: |
+        defaults:
+          pilot:
+            deploymentLabels:
+              app.kubernetes.io/name: "istiod"
+              app.kubernetes.io/component: "istiod"
+              app.kubernetes.io/part-of: "istio"
+              app.kubernetes.io/managed-by: "argocd"
+              app.beyondtrust.com/team: "sre"
+              app.beyondtrust.com/tier: "1"
+            podLabels:
+              app.kubernetes.io/name: "istiod"
+              app.kubernetes.io/component: "istiod"
+              app.kubernetes.io/part-of: "istio"
+              app.kubernetes.io/managed-by: "argocd"
+              app.beyondtrust.com/team: "sre"
+              app.beyondtrust.com/tier: "1"
+          meshConfig:
+            extensionProviders:
+            - name: "oauth2-proxy"
+              envoyExtAuthzHttp:
+                service: "oauth2-proxy.nomine.svc.cluster.local"
+                port: "8090"
+                headersToDownstreamOnDeny:
+                  - content-type
+                  - set-cookie
+                headersToUpstreamOnAllow:
+                  - authorization
+                  - path
+                includeRequestHeadersInCheck:
+                  - "cookie"
+                  - "x-forwarded-access-token"
+            enablePrometheusMerge: true
+          experimental:
+            stableValidationPolicy: true
+          base:
+            enableIstioConfigCRDs: true
+        logAsJson: true  # To output all istio components logs in json format by adding --log_as_json argument to each container argument
   destination:
     server: "https://kubernetes.default.svc"
     namespace: istio-system
