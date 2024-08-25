@@ -12,7 +12,7 @@ spec:
     helm:
       releaseName: istiobase
       valueFiles:
-        - ../istio-base.yaml
+        - istio-base.yaml
   destination:
     server: "https://kubernetes.default.svc"
     namespace: istio-system
