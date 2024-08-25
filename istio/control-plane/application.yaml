@@ -14,7 +14,7 @@ spec:
       valueFiles:
         - values-istiod.yaml
   destination:
-    server: "insights-euc1-blue"
+    server: "https://kubernetes.default.svc"
     namespace: istio-system
   syncPolicy:
     automated:
