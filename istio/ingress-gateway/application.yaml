@@ -12,6 +12,10 @@ spec:
     helm:
       releaseName: istio-ingressgateway
       values: |
+        image:
+          repository: docker.io/istio/proxyv2
+          tag: 1.21.3
+          pullPolicy: Always
         gateways:
           istio-ingressgateway:
             name: istio-ingressgateway
@@ -75,9 +79,6 @@ spec:
               readOnlyRootFilesystem: true
             injectionTemplate: gateway
             # Additional volume mounts
-            containers:
-              - name: istio-proxy
-                image: docker.io/istio/proxyv2:1.21.3
             secretVolumes:
               - name: ingressgateway-certs
                 secretName: istio-ingressgateway-certs
