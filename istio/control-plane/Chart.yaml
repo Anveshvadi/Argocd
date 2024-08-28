@@ -1,7 +1,7 @@
 apiVersion: v2
-name: istio-base
+name: istiod
 version: 0.0.0
 dependencies:
-  - name: base
+  - name: istiod
     version: 1.21.3
     repository: https://istio-release.storage.googleapis.com/charts
